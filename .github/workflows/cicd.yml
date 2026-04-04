@@ -1,4 +1,4 @@
-name: Spring Boot CI/CD on Window
+name: Spring Boot CI/CD on Windows
 
 on:
   push:
