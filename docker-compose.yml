@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: userdb
+    networks:
+      - my-network
+    ports:
+      - "3307:3306"   # Optional: expose MySQL to host if needed
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-dept-spring-boot-app:1.0.1
+    container_name: my-spring-boot-app
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
