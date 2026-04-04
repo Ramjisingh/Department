@@ -66,8 +66,8 @@ jobs:
 
       - name: Build Docker image
         shell: pwsh
-        run: docker build -t ramjiyadav/ramjihub/my-dept-spring-boot-app:latest .
+        run: docker build -t ramjiyadav/my-dept-spring-boot-app:latest .
 
       - name: Push Docker image
         shell: pwsh
-        run: docker push ramjiyadav/ramjihub/my-dept-spring-boot-app:latest
+        run: docker push ramjiyadav/my-dept-spring-boot-app:latest
