@@ -58,6 +58,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Build JAR
+        run: mvn clean package -DskipTests
+
+      - name: Verify JAR
+        run: ls -la target
+
       - name: Build Docker image
         shell: pwsh
         run: docker build -t ramjiyadav/ramjihub/my-dept-spring-boot-app:latest .
