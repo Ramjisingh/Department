@@ -46,7 +46,7 @@ jobs:
   docker-build-and-push:
     needs: build-and-test
     if: github.ref == 'refs/heads/master'   # Only deploy on main
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
