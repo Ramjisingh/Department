@@ -43,9 +43,9 @@ public class DepartmentController {
 
 	@RequestMapping(value="user/{id}", method=RequestMethod.GET)
 	public String getUserById(@PathVariable("id") Long userId){
-		System.out.println("Hell Document.............");
+		System.out.println("Hellow Document.............");
 
-		return "Wecome to Docker world......";
+		return "Welcome to Docker world......";
 	}
 
 }
