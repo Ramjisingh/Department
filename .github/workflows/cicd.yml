@@ -1,10 +1,10 @@
-name: Spring Boot CI/CD on Windows
+name: Spring Boot CI/CD on Linux
 
 on:
   push:
     branches: [ develop, master ]          # Trigger CI on develop pushes
   pull_request:
-    branches: [ master ]             # Trigger CI for PRs targeting main
+    branches: [ master ]             # Trigger CI for PRs targeting master
   workflow_dispatch:               # Manual trigger if needed
 
 jobs:
@@ -64,10 +64,11 @@ jobs:
       - name: Verify JAR
         run: ls -la target
 
+      - name: Set tag
+        run: echo "TAG=${GITHUB_SHA}" >> $GITHUB_ENV
+
       - name: Build Docker image
-        shell: pwsh
-        run: docker build -t ramjiyadav/my-dept-spring-boot-app:latest .
+        run: docker build -t ramjiyadav/my-dept-spring-boot-app:${TAG} .
 
       - name: Push Docker image
-        shell: pwsh
-        run: docker push ramjiyadav/my-dept-spring-boot-app:latest
+        run: docker push ramjiyadav/my-dept-spring-boot-app:${TAG}
